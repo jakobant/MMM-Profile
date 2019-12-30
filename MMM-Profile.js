@@ -273,6 +273,9 @@ Module.register("MMM-Profile", {
 		    this.config.yourName = payload['name']
 		    this.config.url = "./" + this.data.path + "pictures/" + payload['image'];
 		    this.updateDom(self.config.fadeSpeed);
+		    this.sendNotification('CURRENT_PROFILE', payload['name']);
+		    this.sendNotification('MMM-YOUTUBE-PLAY', 'yes');
+		    this.sendNotification('MMM-YOUTUBE-NEXT', 'yes');
 		}
 	},
 
