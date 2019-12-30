@@ -215,7 +215,7 @@ Module.register("MMM-Profile", {
 		var image = document.createElement("img");
   		
     		element.className = "myProfile";
-  		element.innerHTML = this.config.yourName + this.config.randomText;
+  		element.innerHTML = this.config.yourName + " " + this.config.randomText;
   		element.className = this.config.classes ? this.config.classes : "small bright pre-line";
 
 		image.src = this.config.url;
@@ -267,6 +267,12 @@ Module.register("MMM-Profile", {
 	notificationReceived: function(notification, payload, sender) {
 		if (notification == "CURRENTWEATHER_DATA") {
 			this.setCurrentWeatherType(payload.data);
+		}
+		if (notification === "MMM-PROFILE-USER") {
+		    console.log("Reload Profile:", notification, "payload: ", payload);
+		    this.config.yourName = payload['name']
+		    this.config.url = "./" + this.data.path + "pictures/" + payload['image'];
+		    this.updateDom(self.config.fadeSpeed);
 		}
 	},
 
